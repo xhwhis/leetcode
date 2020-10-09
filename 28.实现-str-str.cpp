@@ -18,6 +18,7 @@ public:
                 pn++, pl++, len++;
             }
             if (len == l) return pn - l;
+            pn = pn - len + 1;
         }
         return -1;
     }
