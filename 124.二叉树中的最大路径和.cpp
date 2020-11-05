@@ -14,15 +14,18 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-int ans = 0;
 class Solution {
 public:
-    int maxPathSum(TreeNode* root) {
+    int ans = INT_MIN;
+    int maxGain(TreeNode* root) {
         if (root == nullptr) return 0;
-        int left = max(0, maxPathSum(root->left));
-        int right = max(0, maxPathSum(root->right));
-        ans = max(ans, left + right + root->val);
-        return max(left, right) + root->val;
+        int leftGain = max(maxGain(root->left), 0), rightGain = max(maxGain(root->right), 0);
+        ans = max(ans, root->val + leftGain + rightGain);
+        return root->val + max(leftGain, rightGain);
+    }
+    int maxPathSum(TreeNode* root) {
+        maxGain(root);
+        return ans;
     }
 };
 // @lc code=end
