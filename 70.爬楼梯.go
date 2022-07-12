@@ -6,13 +6,12 @@
 
 // @lc code=start
 func climbStairs(n int) int {
-	var a, b, c = 1, 2, 3
+	a, b := 1, 2
 	for i := 1; i < n; i++ {
-		c = a + b
-		a = b
-		b = c
+		a, b = b, a+b
 	}
 	return a
 }
+
 // @lc code=end
 
